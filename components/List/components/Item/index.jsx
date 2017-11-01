@@ -108,7 +108,7 @@ class Item extends Component {
     if (this.props.link) {
       return (
         <Glow className={this.props.className}>
-          <Link href={this.props.link} onClick={this.props.onClick}>
+          <Link href={this.props.link} onClick={this.props.onClick} styles={styles.link}>
             {this.renderContent()}
           </Link>
         </Glow>

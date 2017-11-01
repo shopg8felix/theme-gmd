@@ -42,10 +42,15 @@ const image = css({
   width: 40,
 }).toString();
 
+const link = {
+  width: '100%',
+};
+
 export default {
   disabled,
   selected,
   title,
   grid,
   image,
+  link,
 };
