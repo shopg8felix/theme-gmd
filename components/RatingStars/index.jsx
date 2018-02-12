@@ -144,11 +144,10 @@ class RatingStars extends React.Component {
           </div>
         );
       }),
-      ...times(numHalfStars, i =>
+      ...times(numHalfStars, i => ((
         <div className={iconClassName} key={i + numFullStars}>
           <StarHalfIcon size={size} />
-        </div>
-      ),
+        </div>))),
     ];
 
     return (

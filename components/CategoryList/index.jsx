@@ -24,12 +24,11 @@ const CategoryList = ({ categories }) => {
   return (
     <List>
       {categories.map(category =>
-        <List.Item
+        (<List.Item
           key={category.id}
           link={`/category/${bin2hex(category.id)}`}
           title={category.name}
-        />
-      )}
+        />))}
     </List>
   );
 };

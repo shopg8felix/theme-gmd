@@ -14,10 +14,10 @@ import setViewTop from 'Components/View/action-creators/setViewTop';
 import setNavigatorSearchPhrase from '../actions/setNavigatorSearchPhrase';
 import toggleNavSearchField from './toggleNavSearchField';
 
- /**
-  * Performs appropriate action(s) when UI search is submitted.
-  * @return {Function} A redux thunk.
-  */
+/**
+ * Performs appropriate action(s) when UI search is submitted.
+ * @return {Function} A redux thunk.
+ */
 const submitSearch = () => (dispatch, getState) => {
   const state = getState();
   const { searchActive, searchPhrase } = state.navigator;

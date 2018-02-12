@@ -53,9 +53,8 @@ describe('<QuantityPicker />', () => {
     let input;
 
     beforeEach(() => {
-      wrapper = mount(
-        <QuantityPicker />);
-
+      wrapper = mount(<QuantityPicker />);
+      // eslint-disable-next-line prefer-destructuring
       input = wrapper.instance().input;
 
       jest.spyOn(input, 'focus');
@@ -89,9 +88,7 @@ describe('<QuantityPicker />', () => {
     beforeEach(() => {
       onChangeMock = jest.fn();
 
-      wrapper = mount(
-        <QuantityPicker quantity={2} onChange={onChangeMock} />
-      );
+      wrapper = mount(<QuantityPicker quantity={2} onChange={onChangeMock} />);
 
       input = wrapper.find('input');
     });
@@ -123,8 +120,7 @@ describe('<QuantityPicker />', () => {
     beforeEach(() => {
       onToggleEditModeMock = jest.fn();
 
-      wrapper = mount(
-        <QuantityPicker onToggleEditMode={onToggleEditModeMock} />);
+      wrapper = mount(<QuantityPicker onToggleEditMode={onToggleEditModeMock} />);
 
       input = wrapper.find('input');
     });

@@ -15,27 +15,27 @@ const inputProps = {
 
 describe('<TextField />', () => {
   it('should render a simple text field', () => {
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('input').length).toBe(1);
   });
 
   it('should render the text field as password', () => {
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} password />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('input[type="password"]').length).toBe(1);
   });
 
   it('should render the text field with a default value', () => {
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} value="FooBar" />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('input[value="FooBar"]').length).toBe(1);
@@ -44,9 +44,9 @@ describe('<TextField />', () => {
   it('should trigger the onChange callback', () => {
     const onChangeMock = jest.fn();
 
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} onChange={onChangeMock} />
-    );
+    ));
 
     wrapper.find('input').simulate('change', { target: { value: 'a' } });
 
@@ -55,9 +55,9 @@ describe('<TextField />', () => {
   });
 
   it('should receive the correct value while typing', () => {
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} />
-    );
+    ));
     const input = wrapper.find('input');
 
     input.simulate('change', { target: { value: 'foobar' } });
@@ -66,9 +66,9 @@ describe('<TextField />', () => {
   });
 
   it('should sanitize the input', () => {
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} onSanitize={value => value.toUpperCase()} />
-    );
+    ));
 
     const input = wrapper.find('input');
 
@@ -81,9 +81,9 @@ describe('<TextField />', () => {
   it('should trigger the validation callback', () => {
     const onValidateMock = jest.fn();
 
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} onValidate={onValidateMock} />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(onValidateMock).toHaveBeenCalled();
@@ -92,9 +92,9 @@ describe('<TextField />', () => {
   it('should focus the input', () => {
     const onFocusMock = jest.fn();
 
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} onFocusChange={onFocusMock} />
-    );
+    ));
 
     const input = wrapper.find('input');
 
@@ -112,9 +112,9 @@ describe('<TextField />', () => {
   it('should show the error message', () => {
     const errorText = 'This is an error here';
 
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} errorText={errorText} />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('Translate').at(2).props().string).toEqual(errorText);
@@ -123,9 +123,9 @@ describe('<TextField />', () => {
   it('should show the label', () => {
     const label = 'This is the label';
 
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} label={label} />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('Label').find('Translate').props().string).toEqual(label);
@@ -134,9 +134,9 @@ describe('<TextField />', () => {
   it('should show the hint text', () => {
     const hintText = 'This is the hint text';
 
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} hintText={hintText} />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('Hint').find('Translate').at(0).props().string).toEqual(hintText);
@@ -149,9 +149,9 @@ describe('<TextField />', () => {
      */
     const onValidate = () => 'Custom validation error';
 
-    const wrapper = mount(
+    const wrapper = mount((
       <TextField {...inputProps} onValidate={onValidate} />
-    );
+    ));
 
     wrapper.find('input').simulate('blur');
     expect(wrapper).toMatchSnapshot();

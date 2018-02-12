@@ -12,9 +12,7 @@ import Dialog from './index';
 
 describe('<Dialog />', () => {
   it('should render without props', () => {
-    const wrapper = shallow(
-      <Dialog modal={{ message: 'msg' }} />
-    );
+    const wrapper = shallow(<Dialog modal={{ message: 'msg' }} />);
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('TextMessageDialog').length).toBe(1);
   });
@@ -27,14 +25,13 @@ describe('<Dialog />', () => {
       request: {},
     };
 
-    const wrapper = shallow(
+    const wrapper = shallow((
       <Dialog
         modal={{
           type: MODAL_PIPELINE_ERROR,
           params,
         }}
-      />
-    );
+      />));
 
     expect(wrapper).toMatchSnapshot();
 

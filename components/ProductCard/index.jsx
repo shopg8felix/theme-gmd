@@ -30,7 +30,9 @@ import styles from './style';
  * @param {number} props.titleRows The max number of rows for the product title.
  * @return {JSX}
  */
-const ProductCard = ({ product, hidePrice, hideRating, hideName, titleRows }) => (
+const ProductCard = ({
+  product, hidePrice, hideRating, hideName, titleRows,
+}) => (
   <Link
     tagName="a"
     href={`/item/${bin2hex(product.id)}`}

@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
- /**
-  * Action Types.
-  */
+/**
+ * Action Types.
+ */
 
 export const TOGGLE_NAVIGATOR_CART_ICON = 'TOGGLE_NAVIGATOR_CART_ICON';
 export const TOGGLE_NAVIGATOR_SEARCH = 'TOGGLE_NAVIGATOR_SEARCH';

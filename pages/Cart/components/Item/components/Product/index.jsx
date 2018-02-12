@@ -64,6 +64,7 @@ class Product extends Component {
    * We need to set the element height explicitly so that we can animate it later.
    */
   componentDidMount() {
+    // eslint-disable-next-line react/no-find-dom-node
     this.transitionElement.style.height = `${getAbsoluteHeight(findDOMNode(this.cardElement)) + 4}px`;
   }
 
@@ -75,6 +76,7 @@ class Product extends Component {
   toggleEditMode = (isEnabled = true) => {
     if (isEnabled) {
       // Scroll the page to move the product component into the viewport.
+      // eslint-disable-next-line react/no-find-dom-node
       const scrollElement = findDOMNode(this.cardElement);
       const yOffset = -(window.innerHeight / 2)
         + getAbsoluteHeight(scrollElement)

@@ -58,6 +58,7 @@ class Coupon extends Component {
    * We need to set the element height explicitly so that we can animate it later.
    */
   componentDidMount() {
+    // eslint-disable-next-line react/no-find-dom-node
     this.transitionElement.style.height = `${getAbsoluteHeight(findDOMNode(this.cardElement))}px`;
   }
 

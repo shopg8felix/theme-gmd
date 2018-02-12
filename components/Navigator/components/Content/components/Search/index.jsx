@@ -20,7 +20,6 @@ class Search extends Component {
     getQueryParam: PropTypes.func.isRequired,
     active: PropTypes.bool,
     placeholder: PropTypes.string,
-    searchPhrase: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     setSearchPhrase: PropTypes.func,
     submitSearch: PropTypes.func,
     toggleSearch: PropTypes.func,
@@ -29,7 +28,6 @@ class Search extends Component {
   static defaultProps = {
     active: true,
     placeholder: null,
-    searchPhrase: '',
     setSearchPhrase: () => {},
     submitSearch: '',
     toggleSearch: () => {},

@@ -18,7 +18,6 @@ import setSearchPhrase from './actions/setSearchPhrase';
  */
 const mapStateToProps = state => ({
   getQueryParam: param => getQueryParam(state, param),
-  searchPhrase: state.navigator.searchPhrase,
 });
 
 /**

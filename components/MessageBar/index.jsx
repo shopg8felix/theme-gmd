@@ -27,12 +27,12 @@ const MessageBar = ({ messages, classNames }) => (
 );
 
 MessageBar.propTypes = {
-  messages: PropTypes.arrayOf(
+  messages: PropTypes.arrayOf((
     PropTypes.shape({
       message: PropTypes.string,
       type: PropTypes.string,
     })
-  ).isRequired,
+  )).isRequired,
   classNames: PropTypes.shape({
     container: PropTypes.string,
     message: PropTypes.string,
@@ -40,7 +40,6 @@ MessageBar.propTypes = {
 };
 
 MessageBar.defaultProps = {
-  messages: [],
   classNames: {
     container: '',
     message: '',

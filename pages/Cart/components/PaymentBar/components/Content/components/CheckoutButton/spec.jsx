@@ -32,9 +32,9 @@ describe('<CheckoutButton /', () => {
 
   describe('Checkout is possible', () => {
     beforeEach(() => {
-      wrapper = shallow(
+      wrapper = shallow((
         <CheckoutButton />
-      );
+      ));
 
       childButton = wrapper.find(RippleButton);
     });
@@ -67,9 +67,9 @@ describe('<CheckoutButton /', () => {
 
   describe('Checkout is not possible', () => {
     beforeEach(() => {
-      wrapper = shallow(
+      wrapper = shallow((
         <CheckoutButton checkoutPossible={false} />
-      );
+      ));
 
       childButton = wrapper.find(RippleButton);
     });

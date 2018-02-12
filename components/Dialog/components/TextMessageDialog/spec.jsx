@@ -14,18 +14,18 @@ const title = 'This is the title.';
 
 describe('<TextMessageDialog />', () => {
   it('should render with minimal props', () => {
-    const wrapper = shallow(
+    const wrapper = shallow((
       <TextMessageDialog message={message} actions={[]} />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.html()).toMatch(message);
   });
 
   it('should render with title and message', () => {
-    const wrapper = shallow(
+    const wrapper = shallow((
       <TextMessageDialog title={title} message={message} actions={[]} />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.html()).toMatch(title);
@@ -37,9 +37,9 @@ describe('<TextMessageDialog />', () => {
       action: () => {},
     }];
 
-    const wrapper = shallow(
+    const wrapper = shallow((
       <TextMessageDialog title={title} message={message} actions={actions} />
-    );
+    ));
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.html()).toMatch(actions[0].label);
