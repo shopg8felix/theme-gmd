@@ -7,6 +7,7 @@
 
 import { connect } from 'react-redux';
 import { getQueryParam } from '@shopgate/pwa-common/selectors/history';
+import { getCurrentPathname } from '@shopgate/pwa-common/selectors/router';
 import submitSearch from '../../actions/submitSearch';
 
 /**
@@ -16,7 +17,7 @@ import submitSearch from '../../actions/submitSearch';
  */
 const mapStateToProps = state => ({
   getQueryParam: param => getQueryParam(state, param),
-  path: state.history.pathname,
+  path: getCurrentPathname(state),
   searchActive: state.navigator.searchActive,
 });
 

@@ -11,7 +11,8 @@ import '@shopgate/pwa-common/styles/reset';
 import 'Styles/fonts';
 import appConfig from '@shopgate/pwa-common/helpers/config';
 import { isDev } from '@shopgate/pwa-common/helpers/environment';
-import Route from '@shopgate/pwa-common/components/Router/components/Route';
+import Router from '@virtuous/react-conductor';
+import Route from '@virtuous/react-conductor/Route';
 import AuthRoutes from '@shopgate/pwa-common/components/Router/components/AuthRoutes';
 import ModalContainer from '@shopgate/pwa-common/components/ModalContainer';
 import App from '@shopgate/pwa-common/App';
@@ -64,31 +65,33 @@ const Pages = () => (
     <Viewport>
       <ModalContainer component={Dialog} />
       <SnackBar />
-      <Route path={`${INDEX_PATH}`} component={Page} />
-      <Route path={`${PAGE_PATH}/:pageId`} component={Page} />
-      <Route path={`${CATEGORY_PATH}`} component={Category} />
-      <Route path={`${CATEGORY_PATH}/:categoryId?/:selection?`} component={Category} />
-      <Route path={`${FILTER_PATH}`} component={Filter} />
-      <Route path={`${FILTER_PATH}/:attribute`} component={FilterAttribute} />
-      <Route path={`${ITEM_PATH}/:productId`} component={Product} />
-      <Route path={`${ITEM_PATH}/:productId/gallery/:initialSlide?`} component={ProductGallery} />
-      <Route path={`${ITEM_PATH}/:productId/reviews/`} component={Reviews} />
-      <Route path={`${CART_PATH}`} component={Cart} />
+      <Router start="/">
+        <Route pattern="/" content={Page} />
+        <Route pattern={`${CATEGORY_PATH}`} content={Category} />
+      </Router>
+      {/*<Route pattern={`${PAGE_PATH}/:pageId`} content={Page} />*/}
+      {/*<Route pattern={`${CATEGORY_PATH}/:categoryId?/:selection?`} content={Category} />*/}
+      {/*<Route pattern={`${FILTER_PATH}`} content={Filter} />*/}
+      {/*<Route pattern={`${FILTER_PATH}/:attribute`} content={FilterAttribute} />*/}
+      {/* <Route pattern={`${ITEM_PATH}/:productId`} content={Product} />*/}
+      {/*<Route pattern={`${ITEM_PATH}/:productId/gallery/:initialSlide?`} content={ProductGallery} />*/}
+      {/*<Route pattern={`${ITEM_PATH}/:productId/reviews/`} content={Reviews} />*/}
+      {/*<Route pattern={`${CART_PATH}`} content={Cart} />*/}
       {
         appConfig.hasFavorites
-        && <Route path={`${FAVORITES_PATH}`} component={Favorites} />
+        && null
+        // && <Route pattern={`${FAVORITES_PATH}`} content={Favorites} />
       }
-      <Route path={`${SEARCH_PATH}`} component={Search} />
-      <Route path={`${LOGIN_PATH}`} component={Login} />
-      <Route path={`${REGISTER_PATH}`} />
+      {/*<Route pattern={`${SEARCH_PATH}`} content={Search} />*/}
+      {/*<Route pattern={`${LOGIN_PATH}`} content={Login} />*/}
 
-      <Portal name={APP_ROUTES} />
+      {/*<Portal name={APP_ROUTES} />*/}
 
-      <AuthRoutes to={`${LOGIN_PATH}`}>
-        <Route path={`${CHECKOUT_PATH}`} component={Checkout} />
-        <Route path={`${ORDERS_PATH}`} component={Orders} />
-        <Route path={`${ITEM_PATH}/:productId/write_review/`} component={WriteReview} />
-      </AuthRoutes>
+      {/*<AuthRoutes to={`${LOGIN_PATH}`}>*/}
+      {/*<Route pattern={`${CHECKOUT_PATH}`} content={Checkout} />*/}
+      {/*<Route pattern={`${ORDERS_PATH}`} content={Orders} />*/}
+      {/*<Route pattern={`${ITEM_PATH}/:productId/write_review/`} content={WriteReview} />*/}
+      {/*{/*</AuthRoutes>*/}
 
       {isDev && (
         <Helmet>

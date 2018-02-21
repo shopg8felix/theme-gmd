@@ -35,26 +35,9 @@ const content = (hasNavigator = true) => css({
   bottom: 0,
   display: 'flex',
   flexDirection: 'column',
-  ':before': {
-    position: 'fixed',
-    display: 'block',
-    top: 0,
-    width: '100%',
-    height: hasNavigator ? variables.navigator.height : 0,
-    zIndex: 3,
-    content: '""',
-    transition: 'box-shadow 100ms cubic-bezier(0.25, 0.1, 0.25, 1)',
-  },
-}).toString();
-
-const contentShaded = css({
-  ':before': {
-    boxShadow: variables.navigator.shadow,
-  },
 }).toString();
 
 export default {
   container,
   content,
-  contentShaded,
 };

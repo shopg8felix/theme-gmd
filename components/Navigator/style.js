@@ -10,6 +10,7 @@ import colors from 'Styles/colors';
 import variables from 'Styles/variables';
 
 const header = css({
+  boxShadow: variables.navigator.shadow,
   position: 'fixed',
   height: variables.navigator.height,
   left: 0,

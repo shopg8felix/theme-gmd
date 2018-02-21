@@ -12,6 +12,7 @@ import { history } from '@shopgate/pwa-common/helpers/router';
 import ParsedLink from '@shopgate/pwa-common/components/Router/helpers/parsed-link';
 import Grid from '@shopgate/pwa-common/components/Grid';
 import Ripple from 'Components/Ripple';
+import connect from './connector';
 import styles from './style';
 
 // Add some delay to the click event to show the ripple effect.
@@ -23,14 +24,15 @@ const CLICK_DELAY = 250;
  * @param {string} props.href A url string.
  * @param {Function} props.close A callback.
  */
-const handleClick = ({ onClick, href, close }) => {
+const handleClick = ({ onClick, href, close, navigate }) => {
   setTimeout(() => {
     // Perform onClick callback
     onClick();
 
     if (href) {
       // Open parsed link
-      new ParsedLink(href).open(history);
+      // new ParsedLink(href).open(history);
+      navigate(href);
     }
 
     // Call close callback from drawer
@@ -90,6 +92,7 @@ const Item = (props) => {
 };
 
 Item.propTypes = {
+  navigate: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
   children: PropTypes.node,
   close: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   count: PropTypes.oneOfType([
@@ -114,4 +117,4 @@ Item.defaultProps = {
   withIndicator: false,
 };
 
-export default Item;
+export default connect(Item);

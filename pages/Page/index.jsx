@@ -49,7 +49,8 @@ class Page extends Component {
    * @returns {string} The page identifier.
    */
   get pageId() {
-    return this.props.params.pageId || PAGE_ID_INDEX;
+    return PAGE_ID_INDEX;
+    //TODO: return this.props.params.pageId || PAGE_ID_INDEX;
   }
 
   /**

@@ -7,6 +7,7 @@
 
 import { combineReducers } from 'redux';
 
+import router from '@virtuous/redux-conductor/reducer';
 import client from '@shopgate/pwa-common/reducers/client';
 import history from '@shopgate/pwa-common/reducers/history';
 import url from '@shopgate/pwa-common/reducers/url';
@@ -42,6 +43,7 @@ const reducers = {
   navigator,
   page,
   product,
+  router,
   reviews,
   search,
   toast,

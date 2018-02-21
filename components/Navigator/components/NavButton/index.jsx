@@ -52,16 +52,16 @@ class NavButton extends Component {
     action: PropTypes.string.isRequired,
     filterAttributeOpen: PropTypes.bool.isRequired,
     filterOpen: PropTypes.bool.isRequired,
+    goBack: PropTypes.func.isRequired,
     loginOpen: PropTypes.bool.isRequired,
-    // eslint-disable-next-line react/no-unused-prop-types
-    path: PropTypes.string.isRequired,
     toggleNavDrawer: PropTypes.func.isRequired,
-    goBackHistory: PropTypes.func,
+    // eslint-disable-next-line react/no-unused-prop-types
+    path: PropTypes.string,
     showIconShadow: PropTypes.bool,
   };
 
   static defaultProps = {
-    goBackHistory: () => {},
+    path: null,
     showIconShadow: false,
   };
 
@@ -113,7 +113,7 @@ class NavButton extends Component {
     event.preventDefault();
 
     if (this.props.filterOpen || this.state.type === NAV_STATE_BACK) {
-      this.props.goBackHistory();
+      this.props.goBack();
       return;
     }
 
