@@ -7,6 +7,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import Portal from '@shopgate/pwa-common/components/Portal';
+import * as portals from '@shopgate/pwa-common-commerce/product/constants/Portals';
 import FavoritesButton from 'Components/FavoritesButton';
 import AddToCartButton from 'Components/AddToCartButton';
 import styles from './style';
@@ -19,24 +21,35 @@ import connect from './connector';
  * @returns {JSX}
  * @constructor
  */
-const CTAButtons = props => (
-  <div className={styles.buttons}>
-    <FavoritesButton
-      active={props.isFavorite}
-      productId={props.productId}
-      className={styles.favButton}
-      rippleClassName={styles.ripple}
-    />
-    <AddToCartButton
-      isLoading={props.isLoading}
-      isOrderable={props.isOrderable}
-      handleAddToCart={props.handleAddToCart}
-      buttonSize={styles.cartButtonSize}
-      iconSize={styles.iconSize}
-      className={styles.cartButton}
-    />
-  </div>
-);
+const CTAButtons = (props) => {
+  console.warn(props);
+
+  return (
+    <div className={styles.buttons}>
+      <FavoritesButton
+        active={props.isFavorite}
+        productId={props.productId}
+        className={styles.favButton}
+        rippleClassName={styles.ripple}
+      />
+
+      {/* ADD TO CART */}
+      <Portal name={portals.PRODUCT_ADD_TO_CART_CTA_BEFORE} />
+      <Portal
+        name={portals.PRODUCT_ADD_TO_CART_CTA}
+        props={{
+          productId: props.productId,
+          styles,
+          isOrderable: props.isOrderable,
+          isLoading: props.isLoading,
+          handleAddToCart: props.handleAddToCart,
+          buttonComponent: AddToCartButton,
+        }}
+      />
+      <Portal name={portals.PRODUCT_ADD_TO_CART_CTA_AFTER} />
+    </div>
+  );
+};
 
 CTAButtons.propTypes = {
   isFavorite: PropTypes.bool.isRequired,

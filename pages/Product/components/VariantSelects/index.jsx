@@ -195,6 +195,7 @@ class VariantSelects extends Component {
       setTimeout(() => {
         this.setState({
           highlightedPickerId: null,
+          openPickerId: this.notSelectedPickerId,
         });
       }, HIGHLIGHT_PICKER_DURATION);
     }, SCROLL_TO_PICKER_TIME);

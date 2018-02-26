@@ -26,6 +26,10 @@
     "@shopgate/ext-product-reviews/rating_stars": {
       "target": "product-item.name.before",
       "path": "@shopgate/ext-product-reviews/frontend/RatingStars"
+    },
+    "@shopgate/ext-add-to-cart/auto-add-to-cart": {
+      "target": "product.add-to-cart-cta",
+      "path": "@shopgate-ext-add-to-cart/frontend/AddToCart"
     }
   },
   "tracking": {
