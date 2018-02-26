@@ -9,7 +9,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bin2hex } from '@shopgate/pwa-common/helpers/data';
 import List from 'Components/List';
-import connect from './connector';
 
 /**
  * The category list component.
@@ -23,13 +22,17 @@ const CategoryList = ({ categories }) => {
 
   return (
     <List>
-      {categories.map(category =>
+      {categories.map(category => (
         <List.Item
           key={category.id}
           link={`/category/${bin2hex(category.id)}`}
+          linkState={{
+            categoryId: category.id,
+            title: category.name,
+          }}
           title={category.name}
         />
-      )}
+      ))}
     </List>
   );
 };
@@ -42,4 +45,4 @@ CategoryList.defaultProps = {
   categories: null,
 };
 
-export default connect(CategoryList);
+export default CategoryList;

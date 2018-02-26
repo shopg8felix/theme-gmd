@@ -6,17 +6,30 @@
  */
 
 import getCategory from '@shopgate/pwa-common-commerce/category/actions/getCategory';
-import { rootCategoryRoutePushed$ } from './streams';
+import { getCurrentRoute } from '@shopgate/pwa-common/selectors/router';
+import {
+  categoryRoutePushed$,
+  rootCategoryRoutePushed$,
+} from './streams';
 
 /**
- * Filter subscriptions.
  * @param {Function} subscribe The subscribe function.
  */
 export default function category(subscribe) {
   /**
-   * Gets triggered on entering the filter route.
+   * Gets triggered on entering the category route.
    */
-  subscribe(rootCategoryRoutePushed$, ({ dispatch }) => {
-    dispatch(getCategory());
+  subscribe(categoryRoutePushed$, ({ dispatch, getState }) => {
+    console.warn('Entered a sub category route');
+  });
+
+  /**
+   * Gets triggered on entering the root category route.
+   */
+  subscribe(rootCategoryRoutePushed$, ({ dispatch, getState }) => {
+    const route = getCurrentRoute(getState());
+    const categoryId = (route && route.state.categoryId) ? route.state.categoryId : null;
+
+    dispatch(getCategory(categoryId));
   });
 }

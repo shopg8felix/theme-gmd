@@ -8,7 +8,7 @@
 import { connect } from 'react-redux';
 import {
   getCategoryProductCount,
-  getCurrentCategory,
+  getCategoryById,
   getCurrentCategoryId,
 } from '@shopgate/pwa-common-commerce/category/selectors';
 import { getProductsResult } from '@shopgate/pwa-common-commerce/product/selectors/product';
@@ -21,7 +21,7 @@ import { isFilterBarShown } from './selectors';
  * @return {Object} The extended component props.
  */
 const mapStateToProps = (state, props) => ({
-  category: getCurrentCategory(state, props),
+  category: getCategoryById(state, props.categoryId),
   hasProducts: getCategoryProductCount(state, props) > 0,
   isFilterBarShown: isFilterBarShown(state, props),
   isRoot: !getCurrentCategoryId(state, props),

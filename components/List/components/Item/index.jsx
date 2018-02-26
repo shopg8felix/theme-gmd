@@ -23,6 +23,7 @@ class Item extends Component {
     isDisabled: PropTypes.bool,
     isSelected: PropTypes.bool,
     link: PropTypes.string,
+    linkState: PropTypes.shape(),
     onClick: PropTypes.func,
     rightComponent: PropTypes.element,
   };
@@ -33,6 +34,7 @@ class Item extends Component {
     isDisabled: false,
     isSelected: false,
     link: null,
+    linkState: null,
     onClick: null,
     rightComponent: null,
   };
@@ -108,7 +110,7 @@ class Item extends Component {
     if (this.props.link) {
       return (
         <Glow className={this.props.className}>
-          <Link href={this.props.link} onClick={this.props.onClick}>
+          <Link href={this.props.link} state={this.props.linkState}>
             {this.renderContent()}
           </Link>
         </Glow>

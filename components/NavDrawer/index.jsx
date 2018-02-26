@@ -125,85 +125,95 @@ class NavDrawer extends Component {
         close={this.handleClose}
         setContentRef={this.setContentRef}
       >
-
         <Header user={user} close={this.handleClose} />
-
-        <Item href={INDEX_PATH} icon={HomeIcon} close={this.handleClose}>
-          <I18n.Text string="navigation.home" />
-        </Item>
-
-        <Item href={CATEGORY_PATH} icon={ViewListIcon} close={this.handleClose}>
-          <I18n.Text string="navigation.categories" />
-        </Item>
-
-        { appConfig.hasFavorites &&
+        <Item
+          href={INDEX_PATH}
+          icon={HomeIcon}
+          label="navigation.home"
+          close={this.handleClose}
+        />
+        <Item
+          href={CATEGORY_PATH}
+          icon={ViewListIcon}
+          label="navigation.categories"
+          close={this.handleClose}
+        />
+        {appConfig.hasFavorites &&
           <Item
             href={FAVORITES_PATH}
             icon={HeartIcon}
             close={this.handleClose}
+            label="navigation.favorites"
             withIndicator={this.props.highlightFavorites}
-          >
-            <I18n.Text string="navigation.favorites" />
-          </Item>
+          />
         }
-
         <CartItem
           href={CART_PATH}
           icon={ShoppingCartIcon}
           count={cartProductCount}
+          label="navigation.cart"
           close={this.handleClose}
-        >
-          <I18n.Text string="navigation.cart" />
-        </CartItem>
-
+        />
         <Divider close={this.handleClose} />
-
         {showQuickLinks && this.renderEntries(entries.quicklinks)}
         {showQuickLinks && <Divider close={this.handleClose} />}
-
         {user && (
-          <Item href={ORDERS_PATH} icon={BoxIcon} close={this.handleClose}>
-            <I18n.Text string="navigation.my_orders" />
-          </Item>
+          <Item
+            href={ORDERS_PATH}
+            icon={BoxIcon}
+            close={this.handleClose}
+            label="navigation.my_orders"
+          />
         )}
-
-        <Item href={`${PAGE_PATH}/shipping`} icon={LocalShippingIcon} close={this.handleClose}>
-          <I18n.Text string="navigation.shipping" />
-        </Item>
-
-        <Item href={`${PAGE_PATH}/payment`} icon={CreditCardIcon} close={this.handleClose}>
-          <I18n.Text string="navigation.payment" />
-        </Item>
-
+        <Item
+          href={`${PAGE_PATH}/shipping`}
+          icon={LocalShippingIcon}
+          close={this.handleClose}
+          label="navigation.shipping"
+        />
+        <Item
+          href={`${PAGE_PATH}/payment`}
+          icon={CreditCardIcon}
+          close={this.handleClose}
+          label="navigation.payment"
+        />
         <Divider close={this.handleClose} />
-
-        <Item href={`${PAGE_PATH}/terms`} icon={DescriptionIcon} close={this.handleClose}>
-          <I18n.Text string="navigation.terms" />
-        </Item>
-
-        <Item href={`${PAGE_PATH}/privacy`} icon={SecurityIcon} close={this.handleClose}>
-          <I18n.Text string="navigation.privacy" />
-        </Item>
-
+        <Item
+          href={`${PAGE_PATH}/terms`}
+          icon={DescriptionIcon}
+          close={this.handleClose}
+          label="navigation.terms"
+        />
+        <Item
+          href={`${PAGE_PATH}/privacy`}
+          icon={SecurityIcon}
+          close={this.handleClose}
+          label="navigation.privacy"
+        />
         {showReturnPolicy && (
-          <Item href={`${PAGE_PATH}/return_policy`} icon={DescriptionIcon} close={this.handleClose}>
-            <I18n.Text string="navigation.return_policy" />
-          </Item>
+          <Item
+            href={`${PAGE_PATH}/return_policy`}
+            icon={DescriptionIcon}
+            close={this.handleClose}
+            label="navigation.return_policy"
+          />
         )}
-
-        <Item href={`${PAGE_PATH}/imprint`} icon={InfoIcon} close={this.handleClose}>
-          <I18n.Text string="navigation.about" />
-        </Item>
-
+        <Item
+          href={`${PAGE_PATH}/imprint`}
+          icon={InfoIcon}
+          close={this.handleClose}
+          label="navigation.about"
+        />
         {user && <Divider close={this.handleClose} />}
         {user && (
-          <Item onClick={logout} icon={LogoutIcon} close={this.handleClose}>
-            <I18n.Text string="navigation.logout" />
-          </Item>
+          <Item
+            onClick={logout}
+            icon={LogoutIcon}
+            close={this.handleClose}
+            label="navigation.logout"
+          />
         )}
-
         <ClientInformation />
-
       </Layout>
     );
   }

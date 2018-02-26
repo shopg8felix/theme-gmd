@@ -14,7 +14,7 @@ import { navigate } from '@shopgate/pwa-common/action-creators/history';
  * @return {Object} The extended component props.
  */
 const mapDispatchToProps = dispatch => ({
-  navigate: href => dispatch(navigate('PUSH', href)),
+  navigate: (href, historyState) => dispatch(navigate('PUSH', href, historyState)),
 });
 
 export default connect(null, mapDispatchToProps);

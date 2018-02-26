@@ -6,7 +6,7 @@
  */
 
 import { connect } from 'react-redux';
-import { getTitle } from 'Components/View/selectors';
+import { getCurrentRouteTitle } from '@shopgate/pwa-common/selectors/router';
 
 /**
  * Maps the contents of the state to the component props.
@@ -15,7 +15,7 @@ import { getTitle } from 'Components/View/selectors';
  */
 const mapStateToProps = state => ({
   action: state.history.action,
-  title: getTitle(state),
+  title: getCurrentRouteTitle(state),
 });
 
 export default connect(mapStateToProps);

@@ -15,6 +15,12 @@ import pipelineErrorDialog from 'Components/Dialog/actions/pipelineErrorDialog';
  * @param {Function} subscribe The subscribe function.
  */
 export default function app(subscribe) {
+
+  // events.onPush((id) => {
+  //   const previousRoute = 4;
+  //   const currentRoute = getRouteById(id);
+  // });
+
   /**
    * Gets triggered when the app starts.
    */

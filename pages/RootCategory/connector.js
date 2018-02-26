@@ -6,7 +6,7 @@
  */
 
 import { connect } from 'react-redux';
-import { getCurrentCategories } from '@shopgate/pwa-common-commerce/category/selectors';
+import { getRootCategories } from '@shopgate/pwa-common-commerce/category/selectors';
 
 /**
  * Maps the contents of the state to the component props.
@@ -14,7 +14,7 @@ import { getCurrentCategories } from '@shopgate/pwa-common-commerce/category/sel
  * @return {Object} The extended component props.
  */
 const mapStateToProps = state => ({
-  categories: getCurrentCategories(state),
+  category: getRootCategories(state),
 });
 
 export default connect(mapStateToProps);

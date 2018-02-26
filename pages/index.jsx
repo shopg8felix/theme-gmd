@@ -40,6 +40,7 @@ import reducers from './reducers';
 import subscribers from './subscribers';
 import Page from './Page';
 import Category from './Category';
+import RootCategory from './RootCategory';
 import Filter from './Filter';
 import FilterAttribute from './FilterAttribute';
 import Product from './Product';
@@ -67,10 +68,10 @@ const Pages = () => (
       <SnackBar />
       <Router start="/">
         <Route pattern="/" content={Page} />
-        <Route pattern={`${CATEGORY_PATH}`} content={Category} />
+        <Route pattern={`${CATEGORY_PATH}`} content={RootCategory} />
+        {/*<Route preload pattern={`${CATEGORY_PATH}/:categoryId?/:selection?`} content={Category} />*/}
       </Router>
       {/*<Route pattern={`${PAGE_PATH}/:pageId`} content={Page} />*/}
-      {/*<Route pattern={`${CATEGORY_PATH}/:categoryId?/:selection?`} content={Category} />*/}
       {/*<Route pattern={`${FILTER_PATH}`} content={Filter} />*/}
       {/*<Route pattern={`${FILTER_PATH}/:attribute`} content={FilterAttribute} />*/}
       {/* <Route pattern={`${ITEM_PATH}/:productId`} content={Product} />*/}
