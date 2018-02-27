@@ -8,6 +8,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { bin2hex } from '@shopgate/pwa-common/helpers/data';
+import Placeholder from '@shopgate/pwa-common/components/Placeholder';
 import List from 'Components/List';
 
 /**
@@ -15,9 +16,20 @@ import List from 'Components/List';
  * @param {Array} categories The categories to display.
  * @returns {JSX}
  */
-const CategoryList = ({ categories }) => {
+const CategoryList = ({ categories, prerender }) => {
   if (!categories) {
-    return null;
+    return (
+      <List>
+        {[...Array(prerender)].map(() => (
+          <Placeholder
+            height={24}
+            left={72}
+            top={17}
+            width={220}
+          />
+        ))}
+      </List>
+    );
   }
 
   return (
@@ -39,10 +51,12 @@ const CategoryList = ({ categories }) => {
 
 CategoryList.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.shape()),
+  prerender: PropTypes.number,
 };
 
 CategoryList.defaultProps = {
   categories: null,
+  prerender: 0,
 };
 
 export default CategoryList;
