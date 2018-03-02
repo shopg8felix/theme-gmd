@@ -20,9 +20,10 @@ const CategoryList = ({ categories, prerender }) => {
   if (!categories) {
     return (
       <List>
-        {[...Array(prerender)].map(() => (
+        {[...Array(prerender)].map(item => (
           <Placeholder
             height={24}
+            key={item}
             left={72}
             top={17}
             width={220}

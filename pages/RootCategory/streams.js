@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { conductorDidPush$ } from '@shopgate/pwa-common/streams/history';
+import { conductorDidPush$ } from '@shopgate/pwa-common/streams/router';
 
 /**
  * Gets triggered  when the root category route is pushed.
