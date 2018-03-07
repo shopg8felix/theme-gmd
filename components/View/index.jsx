@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, { Component } from 'react';
+import React from 'react';
+import Component from '@virtuous/react-conductor/src/Component';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import Swipeable from 'react-swipeable';
