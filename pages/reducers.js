@@ -21,7 +21,7 @@ import general from 'Components/View/reducer';
 import categoryPage from 'Pages/Category/reducer';
 import router from '@virtuous/redux-conductor/reducer';
 
-const reducers = {
+const reducers = combineReducers({
   cart,
   category,
   client,
@@ -45,6 +45,6 @@ const reducers = {
   url,
   user,
   view,
-};
+});
 
 export default reducers;

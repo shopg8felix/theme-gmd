@@ -46,6 +46,7 @@ import Orders from './Orders';
 import Reviews from './Reviews';
 import WriteReview from './WriteReview';
 import RootCategory from './RootCategory';
+import Worker from './worker';
 
 const devFontsUrl = 'https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900';
 
@@ -54,7 +55,7 @@ const devFontsUrl = 'https://fonts.googleapis.com/css?family=Roboto:400,400i,500
  * @returns {JSX}
  */
 const Pages = () => (
-  <App locale={locale} reducers={reducers} subscribers={subscribers}>
+  <App locale={locale} reducers={reducers} subscribers={subscribers} Worker={Worker}>
     <Portal name={APP_GLOBALS} />
     <Viewport>
       <ModalContainer component={Dialog} />
