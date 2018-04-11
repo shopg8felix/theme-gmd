@@ -2,9 +2,10 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import '@shopgate/pwa-common/styles/reset';
 import 'Styles/fonts';
+import Router from '@virtuous/react-conductor/Router';
+import Route from '@virtuous/react-conductor/Route';
 import appConfig from '@shopgate/pwa-common/helpers/config';
 import { isDev } from '@shopgate/pwa-common/helpers/environment';
-import Route from '@shopgate/pwa-common/components/Router/components/Route';
 import AuthRoutes from '@shopgate/pwa-common/components/Router/components/AuthRoutes';
 import ModalContainer from '@shopgate/pwa-common/components/ModalContainer';
 import App from '@shopgate/pwa-common/App';
@@ -44,6 +45,7 @@ import Login from './Login';
 import Orders from './Orders';
 import Reviews from './Reviews';
 import WriteReview from './WriteReview';
+import RootCategory from './RootCategory';
 
 const devFontsUrl = 'https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900';
 
@@ -57,32 +59,10 @@ const Pages = () => (
     <Viewport>
       <ModalContainer component={Dialog} />
       <SnackBar />
-      <Route path={`${INDEX_PATH}`} component={Page} />
-      <Route path={`${PAGE_PATH}/:pageId`} component={Page} />
-      <Route path={`${CATEGORY_PATH}`} component={Category} />
-      <Route path={`${CATEGORY_PATH}/:categoryId?/:selection?`} component={Category} />
-      <Route path={`${FILTER_PATH}`} component={Filter} />
-      <Route path={`${FILTER_PATH}/:attribute`} component={FilterAttribute} />
-      <Route path={`${ITEM_PATH}/:productId`} component={Product} />
-      <Route path={`${ITEM_PATH}/:productId/gallery/:initialSlide?`} component={ProductGallery} />
-      <Route path={`${ITEM_PATH}/:productId/reviews/`} component={Reviews} />
-      <Route path={`${CART_PATH}`} component={Cart} />
-      {
-        appConfig.hasFavorites
-        && <Route path={`${FAVORITES_PATH}`} component={Favorites} />
-      }
-      <Route path={`${SEARCH_PATH}`} component={Search} />
-      <Route path={`${LOGIN_PATH}`} component={Login} />
-      <Route path={`${REGISTER_PATH}`} />
-
-      <Portal name={APP_ROUTES} props={{ View }} />
-
-      <AuthRoutes to={`${LOGIN_PATH}`}>
-        <Route path={`${CHECKOUT_PATH}`} />
-        <Route path={`${ORDERS_PATH}`} component={Orders} />
-        <Route path={`${ITEM_PATH}/:productId/write_review/`} component={WriteReview} />
-      </AuthRoutes>
-
+      <Router>
+        <Route pattern="/" component={Page} />
+        <Route pattern={`${CATEGORY_PATH}`} component={RootCategory} />
+      </Router>
       {isDev && (
         <Helmet>
           <link href={devFontsUrl} rel="stylesheet" />

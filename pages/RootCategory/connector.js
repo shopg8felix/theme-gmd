@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getCurrentRouteTitle } from '@shopgate/pwa-common/selectors/router';
+import { getRootCategories } from '@shopgate/pwa-common-commerce/category/selectors';
 
 /**
  * Maps the contents of the state to the component props.
@@ -7,8 +7,7 @@ import { getCurrentRouteTitle } from '@shopgate/pwa-common/selectors/router';
  * @return {Object} The extended component props.
  */
 const mapStateToProps = state => ({
-  action: state.history.action,
-  title: getCurrentRouteTitle(state),
+  category: getRootCategories(state),
 });
 
 export default connect(mapStateToProps);

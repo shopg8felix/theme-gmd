@@ -10,12 +10,13 @@ import styles from './style';
 class Title extends Component {
   static propTypes = {
     action: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
     onClick: PropTypes.func,
+    title: PropTypes.string,
   };
 
   static defaultProps = {
     onClick: () => {},
+    title: null,
   };
 
   /**

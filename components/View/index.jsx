@@ -167,13 +167,9 @@ class View extends Component {
    * @returns {JSX}
    */
   render() {
-    let contentStyle = styles.content(this.props.hasNavigator);
+    const contentStyle = styles.content(this.props.hasNavigator);
 
     const { children } = this.props;
-
-    if (!this.props.viewTop) {
-      contentStyle += ` ${styles.contentShaded}`;
-    }
 
     return (
       <section className={styles.container} style={this.props.style}>

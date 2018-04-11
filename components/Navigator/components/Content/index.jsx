@@ -34,12 +34,13 @@ const Content = (props) => {
 
 Content.propTypes = {
   getQueryParam: PropTypes.func.isRequired,
-  path: PropTypes.string.isRequired,
   submitSearch: PropTypes.func.isRequired,
+  path: PropTypes.string,
   searchActive: PropTypes.bool,
 };
 
 Content.defaultProps = {
+  path: null,
   searchActive: false,
 };
 

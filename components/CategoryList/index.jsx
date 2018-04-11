@@ -1,35 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { bin2hex } from '@shopgate/pwa-common/helpers/data';
-import { CATEGORY_PATH } from '@shopgate/pwa-common-commerce/category/constants';
-import Portal from '@shopgate/pwa-common/components/Portal';
-import * as portals from '@shopgate/pwa-common-commerce/category/constants/Portals';
+import Placeholder from '@shopgate/pwa-common/components/Placeholder';
 import List from 'Components/List';
-import connect from './connector';
 
 /**
  * The category list component.
  * @param {Array} categories The categories to display.
  * @returns {JSX}
  */
-const CategoryList = ({ categories }) => {
+const CategoryList = ({ categories, prerender }) => {
   if (!categories) {
-    return null;
+    return (
+      <List>
+        {[...Array(prerender)].map(() => (
+          <Placeholder
+            height={24}
+            key="0"
+            left={72}
+            top={17}
+            width={220}
+          />
+        ))}
+      </List>
+    );
   }
 
   return (
     <List>
       {categories.map(category => (
-        <Portal
+        <List.Item
           key={category.id}
-          name={portals.CATEGORY_ITEM}
-          props={{ categoryId: category.id }}
-        >
-          <List.Item
-            link={`${CATEGORY_PATH}/${bin2hex(category.id)}`}
-            title={category.name}
-          />
-        </Portal>
+          link={`/category/${bin2hex(category.id)}`}
+          linkState={{
+            categoryId: category.id,
+            title: category.name,
+          }}
+          title={category.name}
+        />
       ))}
     </List>
   );
@@ -37,10 +45,12 @@ const CategoryList = ({ categories }) => {
 
 CategoryList.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.shape()),
+  prerender: PropTypes.number,
 };
 
 CategoryList.defaultProps = {
   categories: null,
+  prerender: 0,
 };
 
-export default connect(CategoryList);
+export default CategoryList;

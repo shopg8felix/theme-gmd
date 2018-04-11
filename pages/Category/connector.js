@@ -14,7 +14,7 @@ import { isFilterBarShown } from './selectors';
  * @return {Object} The extended component props.
  */
 const mapStateToProps = (state, props) => ({
-  category: getCurrentCategory(state, props),
+  category: getCurrentCategory(state),
   hasProducts: getCategoryProductCount(state, props) > 0,
   isFilterBarShown: isFilterBarShown(state, props),
   isRoot: !getCurrentCategoryId(state, props),
