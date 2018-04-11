@@ -19,8 +19,6 @@ import styles from './style';
  */
 class Page extends Component {
   static propTypes = {
-    getPageConfig: PropTypes.func.isRequired,
-    params: PropTypes.shape().isRequired,
     configs: PropTypes.shape(),
     style: PropTypes.shape(),
   };
@@ -31,27 +29,11 @@ class Page extends Component {
   };
 
   /**
-   * ComponentDidMount lifecycle hook.
-   */
-  componentDidMount() {
-    this.props.getPageConfig(this.pageId);
-  }
-
-  /**
-   * Getter for pageId with fallback to index route.
-   * @returns {string} The page identifier.
-   */
-  get pageId() {
-    // return this.props.params.pageId || PAGE_ID_INDEX;
-    return PAGE_ID_INDEX;
-  }
-
-  /**
    * Returns the current view title.
    * @return {string}
    */
   get title() {
-    const { title } = this.props.configs[this.pageId];
+    const { title } = this.props.configs[PAGE_ID_INDEX];
 
     if (!title) {
       return '';
@@ -69,7 +51,7 @@ class Page extends Component {
       return null;
     }
 
-    const pageConfig = this.props.configs[this.pageId];
+    const pageConfig = this.props.configs[PAGE_ID_INDEX];
 
     if (!pageConfig) {
       return null;
@@ -77,13 +59,13 @@ class Page extends Component {
 
     return (
       <View className={styles.container} style={this.props.style} title={this.title}>
-        <Portal name={PAGE_CONTENT_BEFORE} props={{ id: this.pageId }} />
-        <Portal name={PAGE_CONTENT} props={{ id: this.pageId }}>
+        <Portal name={PAGE_CONTENT_BEFORE} props={{ id: PAGE_ID_INDEX }} />
+        <Portal name={PAGE_CONTENT} props={{ id: PAGE_ID_INDEX }}>
           <div className={styles.widgetWrapper}>
             <Widgets components={widgets} widgets={pageConfig.widgets} />
           </div>
         </Portal>
-        <Portal name={PAGE_CONTENT_AFTER} props={{ id: this.pageId }} />
+        <Portal name={PAGE_CONTENT_AFTER} props={{ id: PAGE_ID_INDEX }} />
       </View>
     );
   }
