@@ -1,24 +1,14 @@
 import { connect } from 'react-redux';
-import {
-  getCategoryProductCount,
-  getCurrentCategory,
-  getCurrentCategoryId,
-} from '@shopgate/pwa-common-commerce/category/selectors';
-import { getProductsResult } from '@shopgate/pwa-common-commerce/product/selectors/product';
-import { isFilterBarShown } from './selectors';
+import { getCurrentCategory, getChildCategoriesById } from '@shopgate/pwa-common-commerce/category/selectors';
 
 /**
- * Maps the contents of the state to the component props.
  * @param {Object} state The current application state.
- * @param {Object} props The component props.
- * @return {Object} The extended component props.
+ * @param {Object} props The componen props.
+ * @return {Object}
  */
 const mapStateToProps = (state, props) => ({
-  category: getCurrentCategory(state),
-  hasProducts: getCategoryProductCount(state, props) > 0,
-  isFilterBarShown: isFilterBarShown(state, props),
-  isRoot: !getCurrentCategoryId(state, props),
-  ...getProductsResult(state, props),
+  category: getCurrentCategory(state, props),
+  childCategories: getChildCategoriesById(state, props),
 });
 
-export default connect(mapStateToProps, null, null, { withRef: true });
+export default connect(mapStateToProps);

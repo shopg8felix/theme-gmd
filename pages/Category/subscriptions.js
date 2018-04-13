@@ -1,24 +1,25 @@
-import { categoryRoutePushed$ } from './streams';
+import fetchCategory from '@shopgate/pwa-common-commerce/category/actions/fetchCategory';
+import fetchCategoryProducts from '@shopgate/pwa-common-commerce/category/actions/fetchCategoryProducts';
+import fetchCategoryChildren from '@shopgate/pwa-common-commerce/category/actions/fetchCategoryChildren';
+import { categoryDidEnter$, categoryReceived$ } from '@shopgate/pwa-common-commerce/category/streams';
 
 /**
  * Filter subscriptions.
  * @param {Function} subscribe The subscribe function.
  */
 export default function category(subscribe) {
-  // const categoryRouteDidEnter$ = routeDidEnter(CATEGORY_PATH);
+  subscribe(categoryDidEnter$, ({ dispatch, action }) => {
+    const { route: { state: { categoryId } } } = action;
+    dispatch(fetchCategory(categoryId));
+  });
 
-  // /**
-  //  * Gets triggered on entering the filter route.
-  //  */
-  // subscribe(categoryRouteDidEnter$, ({ dispatch, getState }) => {
-  //   const state = getState();
-  //   dispatch(getCategory(getCurrentCategoryId(state)));
-  // });
+  subscribe(categoryReceived$, ({ dispatch, action: { categoryData, categoryId } }) => {
+    if (categoryData.childrenCount && !categoryData.children.length) {
+      dispatch(fetchCategoryChildren(categoryId));
+    }
 
-  /**
- * Gets triggered on entering the filter route.
- */
-  subscribe(categoryRoutePushed$, ({ dispatch, getState }) => {
-    console.warn('Sub Category route entered');
+    if (categoryData.productCount) {
+      dispatch(fetchCategoryProducts(categoryId));
+    }
   });
 }

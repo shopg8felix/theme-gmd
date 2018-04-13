@@ -8,9 +8,9 @@ import getProducts from './actions/getProducts';
  * @param {Object} props The component props.
  * @return {Object} The extended component props.
  */
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   viewMode: state.ui.categoryPage.viewMode,
-  ...getProductsResult(state),
+  ...getProductsResult(state, props),
 });
 
 /**
