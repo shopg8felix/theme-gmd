@@ -12,6 +12,7 @@ const wrapper = css({
   height: progressBarHeight,
   overflow: 'hidden',
   transition: 'transform .3s linear',
+  transitionDelay: '500ms',
 }).toString();
 
 const innerElement = css({
@@ -69,10 +70,11 @@ const indeterminateShort = css.keyframes({
 const animating = css({
   ':before': {
     animation: `${indeterminateLong} 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite`,
+    animationDelay: '500ms',
   },
   ':after': {
     animation: `${indeterminateShort} 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite`,
-    animationDelay: '1.15s',
+    animationDelay: '1.65s',
   },
 }).toString();
 

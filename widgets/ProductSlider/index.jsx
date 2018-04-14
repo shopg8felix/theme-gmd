@@ -86,6 +86,14 @@ class ProductSlider extends Component {
   }
 
   /**
+   * 
+   * @param {*} nextProps 
+   */
+  shouldComponentUpdate(nextProps) {
+    return this.props.products.length !== nextProps.products.length;
+  }
+
+  /**
    * Renders a headline if we have one.
    * @returns {JSX}
    */

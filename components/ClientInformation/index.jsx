@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash/isEqual';
 import connect from './connector';
 import styles from './style';
 
@@ -37,6 +38,18 @@ class ClientInformation extends Component {
    */
   componentDidMount() {
     document.addEventListener('touchend', this.cancelTimer);
+  }
+
+  /**
+   * 
+   * @param {*} nextProps 
+   * @param {*} nextState 
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.state.isDeviceIdVisible !== nextState.isDeviceIdVisible
+      || !isEqual(this.props, nextProps)
+    );
   }
 
   /**

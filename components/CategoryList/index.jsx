@@ -26,6 +26,8 @@ const CategoryList = ({ categories, prerender }) => {
     );
   }
 
+  console.warn('rerendering');
+
   return (
     <List>
       {categories.map(category => (

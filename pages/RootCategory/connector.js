@@ -1,4 +1,5 @@
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+import connect from '@shopgate/pwa-common/connect';
 import { getRootCategories } from '@shopgate/pwa-common-commerce/category/selectors';
 
 /**
@@ -10,4 +11,16 @@ const mapStateToProps = state => ({
   category: getRootCategories(state),
 });
 
-export default connect(mapStateToProps);
+/**
+ * 
+ * @param {*} next 
+ * @param {*} prev 
+ */
+const areStatesEqual = (next, prev) => {
+  const nextLength = Object.keys(next.category.rootCategories).length;
+  const prevLength = Object.keys(prev.category.rootCategories).length;
+  console.error(prevLength, nextLength);
+  return nextLength === prevLength;
+};
+
+export default connect(mapStateToProps, null, null, { areStatesEqual });

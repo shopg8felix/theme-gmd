@@ -75,6 +75,18 @@ class Search extends Component {
   }
 
   /**
+   * 
+   * @param {*} nextProps 
+   * @param {*} nextState 
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.state.active !== nextState.active
+      || this.state.inputValue !== nextState.inputValue
+    );
+  }
+
+  /**
    * Updates the search query.
    */
   updateQuery = () => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash/isEqual';
 import I18n from '@shopgate/pwa-common/components/I18n';
 import Portal from '@shopgate/pwa-common/components/Portal';
 import * as commonPortals from '@shopgate/pwa-common/constants/Portals';
@@ -71,6 +72,10 @@ class NavDrawer extends Component {
     if (this.contentRef && navDrawerActive && !this.props.navDrawerActive) {
       this.contentRef.scrollTop = 0;
     }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return !isEqual(this.props, nextProps)
   }
 
   /**

@@ -21,7 +21,6 @@ export default function app(subscribe) {
    * Gets triggered when the app starts.
    */
   subscribe(appDidStart$, ({ dispatch }) => {
-    // dispatch(navigate('PUSH', '/'));
     conductor.push('/');
     // Add event callbacks.
     event.addCallback(EVENT_PIPELINE_ERROR, params => dispatch(pipelineErrorDialog(params)));
