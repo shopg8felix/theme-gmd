@@ -34,17 +34,17 @@ import reducers from './reducers';
 import subscribers from './subscribers';
 import Page from './Page';
 import Category from './Category';
-import Filter from './Filter';
-import FilterAttribute from './FilterAttribute';
-import Product from './Product';
-import ProductGallery from './ProductGallery';
-import Cart from './Cart';
-import Favorites from './Favorites';
-import Search from './Search';
-import Login from './Login';
-import Orders from './Orders';
-import Reviews from './Reviews';
-import WriteReview from './WriteReview';
+// Import Filter from './Filter';
+// Import FilterAttribute from './FilterAttribute';
+// Import Product from './Product';
+// Import ProductGallery from './ProductGallery';
+// Import Cart from './Cart';
+// Import Favorites from './Favorites';
+// Import Search from './Search';
+// Import Login from './Login';
+// Import Orders from './Orders';
+// Import Reviews from './Reviews';
+// Import WriteReview from './WriteReview';
 import RootCategory from './RootCategory';
 import Worker from './worker';
 
@@ -63,6 +63,7 @@ const Pages = () => (
       <Router>
         <Route pattern="/" component={Page} />
         <Route pattern={`${CATEGORY_PATH}`} component={RootCategory} />
+        <Route pattern={`${CATEGORY_PATH}/:categoryId?/:selection?`} component={Category} />
       </Router>
       {isDev && (
         <Helmet>
