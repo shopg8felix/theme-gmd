@@ -1,4 +1,5 @@
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+import connect from '@shopgate/pwa-common/connect';
 import getProductsByQuery from '@shopgate/pwa-common-commerce/product/actions/getProductsByQuery';
 import { getProductsResult } from '../selectors';
 
@@ -25,4 +26,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getProductsByQuery(type, value, sort, id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps);
+/**
+ * 
+ * @param {*} next 
+ * @param {*} prev 
+ */
+const areStatePropsEqual = (next, prev) => (
+  next.products.length === prev.products.length
+);
+
+export default connect(mapStateToProps, mapDispatchToProps, null, { areStatePropsEqual });

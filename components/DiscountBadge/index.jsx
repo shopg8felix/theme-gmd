@@ -13,11 +13,12 @@ import styles from './style';
 const DiscountBadge = ({
   text, className, display, discount,
 }) => (
-  <I18n.Text
-    className={`${styles[display]} ${className}`}
-    string={text}
-    params={[discount]}
-  />
+  <span className={`${styles[display]} ${className}`}>
+    <I18n.Text
+      string={text}
+      params={[discount]}
+    />
+  </span>
 );
 
 DiscountBadge.propTypes = {

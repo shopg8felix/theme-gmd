@@ -22,4 +22,13 @@ const mapDispatchToProps = dispatch => ({
   getLiveshoppingProducts: () => dispatch(getLiveshoppingProducts()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps);
+/**
+ * 
+ * @param {*} next 
+ * @param {*} prev 
+ */
+const areStatePropsEqual = (next, prev) => (
+  next.products.length === prev.products.length
+);
+
+export default connect(mapStateToProps, mapDispatchToProps, null, { areStatePropsEqual });
