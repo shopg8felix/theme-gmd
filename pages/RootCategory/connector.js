@@ -16,11 +16,6 @@ const mapStateToProps = state => ({
  * @param {*} next 
  * @param {*} prev 
  */
-const areStatesEqual = (next, prev) => {
-  const nextLength = Object.keys(next.category.rootCategories).length;
-  const prevLength = Object.keys(prev.category.rootCategories).length;
-  console.error(prevLength, nextLength);
-  return nextLength === prevLength;
-};
+const areStatePropsEqual = (next, prev) => !(!prev.category && next.category);
 
-export default connect(mapStateToProps, null, null, { areStatesEqual });
+export default connect(mapStateToProps, null, null, { areStatePropsEqual });

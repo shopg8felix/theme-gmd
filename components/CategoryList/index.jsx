@@ -46,12 +46,11 @@ const CategoryList = ({ categories, prerender }) => {
 };
 
 CategoryList.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.shape()),
+  categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   prerender: PropTypes.number,
 };
 
 CategoryList.defaultProps = {
-  categories: null,
   prerender: 0,
 };
 
