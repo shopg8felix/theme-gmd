@@ -2,16 +2,25 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import View from 'Components/View';
 import CategoryList from 'Components/CategoryList';
+import ProductGrid from 'Components/ProductGrid';
 import connect from './connector';
 
 /**
  * @param {Object} props The component props.
  * @return {JSX}
  */
-const Category = ({ category, childCategories, title }) => (
+const Category = ({
+  category,
+  childCategories,
+  products,
+  title,
+}) => (
   <View title={title}>
     {(category && category.childrenCount) ? (
       <CategoryList prerender={category.childrenCount} categories={childCategories} />
+    ) : null}
+    {products ? (
+      <ProductGrid products={products} />
     ) : null}
   </View>
 );
