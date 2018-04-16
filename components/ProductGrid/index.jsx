@@ -1,66 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ITEMS_PER_LOAD } from '@shopgate/pwa-common/constants/DisplayOptions';
-import InfiniteContainer from '@shopgate/pwa-common/components/InfiniteContainer';
-import LoadingIndicator from 'Components/LoadingIndicator';
-import Iterator from './components/Iterator';
-import Layout from './components/Layout';
+import ProductPlaceholder from './Item/Placeholder';
+import Layout from './Layout';
+import Iterator from './Iterator';
+import Item from './Item';
 
 /**
- * The Product Grid component.
  * @param {Object} props The component props.
- * @returns {JSX}
+ * @return {JSX}
  */
-const ProductGrid = ({
-  flags,
-  infiniteLoad,
-  handleGetProducts,
-  products,
-  totalProductCount,
-}) => {
-  if (!infiniteLoad) {
-    return (
-      <Layout>
-        {products.map(product => (
-          <Iterator
-            display={flags}
-            id={product.id}
-            key={product.id}
-            {...product}
-          />
-        ))}
-      </Layout>
-    );
-  }
-
-  return (
-    <InfiniteContainer
-      wrapper={Layout}
-      iterator={Iterator}
-      loader={handleGetProducts}
-      items={products}
-      loadingIndicator={<LoadingIndicator />}
-      totalItems={totalProductCount}
-      initialLimit={6}
-      limit={ITEMS_PER_LOAD}
-    />
-  );
-};
+const ProductGrid = ({ products, prerender }) => (
+  <Layout>
+    {!products.length && [...Array(prerender)].map((value, key) => (
+      <Iterator key={`iterator-${key}`} id={key}>
+        <ProductPlaceholder />
+      </Iterator>
+    ))}
+    {products.length && products.map(product => (
+      <Iterator key={product.id} id={product.id}>
+        <Item product={product} />
+      </Iterator>
+    ))}
+  </Layout>
+);
 
 ProductGrid.propTypes = {
-  flags: PropTypes.shape(),
-  handleGetProducts: PropTypes.func,
-  infiniteLoad: PropTypes.bool,
+  prerender: PropTypes.number,
   products: PropTypes.arrayOf(PropTypes.shape()),
-  totalProductCount: PropTypes.number,
 };
 
 ProductGrid.defaultProps = {
-  flags: null,
-  handleGetProducts: () => { },
-  infiniteLoad: true,
-  products: null,
-  totalProductCount: null,
+  prerender: 0,
+  products: [],
 };
 
 export default ProductGrid;

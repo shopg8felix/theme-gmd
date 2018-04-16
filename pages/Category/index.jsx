@@ -19,21 +19,21 @@ const Category = ({
     {(category && category.childrenCount) ? (
       <CategoryList prerender={category.childrenCount} categories={childCategories} />
     ) : null}
-    {products ? (
-      <ProductGrid products={products} />
-    ) : null}
+    <ProductGrid products={products} prerender={8} />
   </View>
 );
 
 Category.propTypes = {
   category: PropTypes.shape(),
   childCategories: PropTypes.arrayOf(PropTypes.shape()),
+  products: PropTypes.arrayOf(PropTypes.shape()),
   title: PropTypes.string,
 };
 
 Category.defaultProps = {
   category: null,
   childCategories: null,
+  products: [],
   title: null,
 };
 

@@ -24,20 +24,33 @@ const mapStateToProps = (state, props) => ({
  */
 const areStatePropsEqual = (next, prev) => {
   // If there are no categories previously or now, stop.
-  if ((!prev.childCategories && !next.childCategories) || (!prev.products && !next.products)) {
+  if (!prev.childCategories && !next.childCategories) {
+    return true;
+  }
+
+  if (!prev.products.length && !next.products.length) {
     return true;
   }
 
   // If there are new child categories then run.
-  if ((!prev.childCategories && next.childCategories) || (!prev.products && next.products)) {
+  if (!prev.childCategories && next.childCategories) {
+    return false;
+  }
+
+  if (!prev.products.length && next.products.length) {
     return false;
   }
 
   // Check for next categories and if the number received is the same.
-  return (
-    (next.childCategories && (next.childCategories.length === prev.childCategories.length)) ||
-    (next.products && (next.products.length === prev.products.length))
-  );
+  if (next.childCategories && (next.childCategories.length === prev.childCategories.length)) {
+    return true;
+  }
+
+  if (next.products.length && (next.products.length === prev.products.length)) {
+    return true;
+  }
+
+  return true;
 };
 
 export default connect(mapStateToProps, null, null, { areStatePropsEqual });

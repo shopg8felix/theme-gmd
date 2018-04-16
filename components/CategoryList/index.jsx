@@ -15,10 +15,10 @@ const CategoryList = ({ categories, prerender }) => {
       <List>
         {[...Array(prerender)].map(() => (
           <Placeholder
-            height={24}
+            height={20}
             key="0"
             left={72}
-            top={17}
+            top={18}
             width={220}
           />
         ))}
