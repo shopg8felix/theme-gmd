@@ -36,7 +36,7 @@ import Page from './Page';
 import Category from './Category';
 // Import Filter from './Filter';
 // Import FilterAttribute from './FilterAttribute';
-// Import Product from './Product';
+import Product from './Product';
 // Import ProductGallery from './ProductGallery';
 // Import Cart from './Cart';
 // Import Favorites from './Favorites';
@@ -63,7 +63,8 @@ const Pages = () => (
       <Router>
         <Route pattern="/" component={Page} />
         <Route pattern={`${CATEGORY_PATH}`} component={RootCategory} />
-        <Route pattern={`${CATEGORY_PATH}/:categoryId?/:selection?`} component={Category} />
+        <Route pattern={`${CATEGORY_PATH}/:categoryId/:selection?`} component={Category} />
+        <Route pattern={`${ITEM_PATH}/:productId`} component={Product} />
       </Router>
       {isDev && (
         <Helmet>

@@ -8,6 +8,7 @@
     "transform-class-properties",
     "transform-export-extensions",
     "transform-react-jsx-source",
+    "dynamic-import-webpack",
     ["module-resolver", {
       "cwd": "babelrc",
       "alias": {

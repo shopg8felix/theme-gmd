@@ -7,7 +7,7 @@ import { RECEIVE_CATEGORY } from '@shopgate/pwa-common-commerce/category/constan
  * @type {Observable}
  */
 export const categoryRoutePushed$ = conductorDidPush$
-  .filter(({ action: { stack } }) => stack[stack.length - 1].pathname.includes('/category/'));
+  .filter(({ action: { stack } }) => stack[stack.length - 1].pathname.startsWith('/category/'));
 
 export const categoryReceived$ = main$
   .filter(({ action }) => action.type === RECEIVE_CATEGORY);
