@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from '@shopgate/pwa-common/components/Router/components/Link';
+import Link from '@shopgate/pwa-common/components/Link';
 import Grid from '@shopgate/pwa-common/components/Grid';
 import Label from './components/Label';
 import Chips from './components/Chips';
@@ -19,11 +19,7 @@ const ListItem = ({ filter }) => {
     <div className={styles.item} data-test-id="filterListItem">
       <Link href={filter.url}>
         <Grid>
-          <Grid.Item
-            className={styles.gridItem}
-            grow={1}
-            shrink={0}
-          >
+          <Grid.Item className={styles.gridItem} grow={1} shrink={0}>
             <Label label={filter.label} />
           </Grid.Item>
           {isActive && (

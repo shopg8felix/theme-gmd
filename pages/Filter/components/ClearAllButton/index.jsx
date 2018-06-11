@@ -15,7 +15,7 @@ const ClearAllButton = ({ isActive, removeAllTemporaryFilters }) => (
     <Button
       flat
       type="regular"
-      onClick={() => removeAllTemporaryFilters()}
+      onClick={removeAllTemporaryFilters}
       disabled={!isActive}
     >
       <I18n.Text string="filter.clear_all" />

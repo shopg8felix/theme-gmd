@@ -9,6 +9,7 @@ import ModalContainer from '@shopgate/pwa-common/components/ModalContainer';
 import App from '@shopgate/pwa-common/App';
 import { INDEX_PATH, LOGIN_PATH, PAGE_PATH } from '@shopgate/pwa-common/constants/RoutePaths';
 import { CATEGORY_PATH } from '@shopgate/pwa-common-commerce/category/constants';
+import { FILTER_PATH } from '@shopgate/pwa-common-commerce/filter/constants';
 import { ITEM_PATH } from '@shopgate/pwa-common-commerce/product/constants';
 import { CART_PATH } from '@shopgate/pwa-common-commerce/cart/constants';
 import Portal from '@shopgate/pwa-common/components/Portal';
@@ -45,6 +46,7 @@ const Pages = () => (
             <Route pattern={`${PAGE_PATH}/:pageId`} component={routes.Page} preload />
             <Route pattern={`${CATEGORY_PATH}`} component={routes.RootCategory} />
             <Route pattern={`${CATEGORY_PATH}/:categoryId`} component={routes.Category} preload />
+            <Route pattern={`${FILTER_PATH}`} component={routes.Filter} />
             <Route pattern={`${ITEM_PATH}/:productId`} component={routes.Product} preload />
             <Route pattern={`${ITEM_PATH}/:productId/gallery/:slide`} component={routes.ProductGallery} />
             <Route pattern={`${CART_PATH}`} component={routes.Cart} />

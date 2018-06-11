@@ -10,4 +10,4 @@ const mapDispatchToProps = dispatch => ({
   removeAllTemporaryFilters: () => dispatch(removeAllTemporaryFilters()),
 });
 
-export default connect(null, mapDispatchToProps);
+export default connect(null, mapDispatchToProps, null, { pure: () => null });

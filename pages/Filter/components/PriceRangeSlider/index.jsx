@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import RangeSlider from '@shopgate/pwa-common/components/RangeSlider';
@@ -8,7 +8,7 @@ import styles from './style';
 /**
  * The Price Range Slider component.
  */
-class PriceRangeSlider extends Component {
+class PriceRangeSlider extends PureComponent {
   static propTypes = {
     max: PropTypes.number, // The maximum range value.
     min: PropTypes.number, // The minimum range value.

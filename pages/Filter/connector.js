@@ -1,5 +1,5 @@
-import connect from '@shopgate/pwa-common/components/Router/helpers/connect';
-import { getAvailableFilters } from '@shopgate/pwa-common-commerce/filter/selectors';
+import { connect } from 'react-redux';
+import { getAvailableFilters, getTemporaryFilters } from '@shopgate/pwa-common-commerce/filter/selectors';
 import mergeTemporaryFilters from '@shopgate/pwa-common-commerce/filter/action-creators/mergeTemporaryFilters';
 import removeTemporaryFilter from '@shopgate/pwa-common-commerce/filter/action-creators/removeTemporaryFilter';
 import { getQueryParamsAsString } from '@shopgate/pwa-common/selectors/history';
@@ -12,7 +12,7 @@ import { getQueryParamsAsString } from '@shopgate/pwa-common/selectors/history';
  */
 const mapStateToProps = (state, props) => ({
   availableFilters: getAvailableFilters(state, props),
-  temporaryFilters: state.filter.temporaryFilters,
+  temporaryFilters: getTemporaryFilters(state, props),
   queryParams: getQueryParamsAsString(state),
 });
 
@@ -26,4 +26,4 @@ const mapDispatchToProps = dispatch => ({
   removeTemporaryFilter: (id, index = null) => dispatch(removeTemporaryFilter(id, index)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, null, { withRef: true });
+export default connect(mapStateToProps, mapDispatchToProps, null);
