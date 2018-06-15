@@ -1,4 +1,4 @@
-import setTitle from '@shopgate/pwa-common/actions/view/setTitle';
+import { UI_NAVIGATOR_SET_TITLE } from '@shopgate/pwa-common/constants/ui';
 import { FAVORITES_PATH } from '@shopgate/pwa-common-commerce/favorites/constants';
 import { addFavorites } from '@shopgate/pwa-common-commerce/favorites/actions/toggleFavorites';
 import { favoritesWillEnter$, favoritesWillRemoveItem$ } from '@shopgate/pwa-common-commerce/favorites/streams';
@@ -10,8 +10,8 @@ import { FAVORITES_SHOW_TOAST_DELAY } from './constants';
  * @param {Function} subscribe Subscribes to an observable.
  */
 export default function favorites(subscribe) {
-  subscribe(favoritesWillEnter$, ({ dispatch }) => {
-    dispatch(setTitle('titles.favorites'));
+  subscribe(favoritesWillEnter$, ({ UIEvents }) => {
+    UIEvents.emit(UI_NAVIGATOR_SET_TITLE, 'titles.favorites');
   });
 
   subscribe(favoritesWillRemoveItem$, ({ dispatch, action, getState }) => {

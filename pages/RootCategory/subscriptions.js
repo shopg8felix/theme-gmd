@@ -1,4 +1,4 @@
-import setTitle from '@shopgate/pwa-common/actions/view/setTitle';
+import { UI_NAVIGATOR_SET_TITLE } from '@shopgate/pwa-common/constants/ui';
 import fetchRootCategories from '@shopgate/pwa-common-commerce/category/actions/fetchRootCategories';
 import { rootCategoryWillEnter$ } from './streams';
 
@@ -6,8 +6,8 @@ import { rootCategoryWillEnter$ } from './streams';
  * @param {Function} subscribe The subscribe function.
  */
 export default function category(subscribe) {
-  subscribe(rootCategoryWillEnter$, ({ dispatch }) => {
+  subscribe(rootCategoryWillEnter$, ({ dispatch, UIEvents }) => {
     dispatch(fetchRootCategories());
-    dispatch(setTitle('titles.categories'));
+    UIEvents.emit(UI_NAVIGATOR_SET_TITLE, 'titles.categories');
   });
 }

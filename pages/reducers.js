@@ -17,8 +17,6 @@ import reviews from '@shopgate/pwa-common-commerce/reviews/reducers';
 import router from '@virtuous/redux-conductor/reducer';
 import navigator from 'Components/Navigator/reducer';
 import extensions from 'Extensions/reducers';
-import general from 'Components/View/reducer';
-import categoryPage from 'Pages/Category/reducer';
 
 const reducers = combineReducers({
   cart,
@@ -36,10 +34,6 @@ const reducers = combineReducers({
   reviews,
   search,
   toast,
-  ui: combineReducers({
-    general,
-    categoryPage,
-  }),
   url,
   user,
   view,

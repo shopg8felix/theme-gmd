@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { UIEvents } from '@shopgate/pwa-core';
 import Portal from '@shopgate/pwa-common/components/Portal';
 import * as commonPortals from '@shopgate/pwa-common/constants/Portals';
-import { UI_TOGGLE_NAVDRAWER } from '@shopgate/pwa-common/constants/ui';
+import { UI_NAVDRAWER_TOGGLE } from '@shopgate/pwa-common/constants/ui';
 import * as categoryPortals from '@shopgate/pwa-common-commerce/category/constants/Portals';
 import * as favoritesPortals from '@shopgate/pwa-common-commerce/favorites/constants/Portals';
 import * as cartPortals from '@shopgate/pwa-common-commerce/cart/constants/Portals';
@@ -65,7 +65,7 @@ class NavDrawer extends Component {
       open: false,
     };
 
-    UIEvents.addListener(UI_TOGGLE_NAVDRAWER, this.toggleDrawer);
+    UIEvents.addListener(UI_NAVDRAWER_TOGGLE, this.toggleDrawer);
   }
 
   /**
@@ -95,7 +95,7 @@ class NavDrawer extends Component {
    * Handles the close event for the drawer and propagates the changes to the store.
    */
   handleClose = () => {
-    UIEvents.emit(UI_TOGGLE_NAVDRAWER, false);
+    UIEvents.emit(UI_NAVDRAWER_TOGGLE, false);
   };
 
   /**
@@ -140,7 +140,6 @@ class NavDrawer extends Component {
         close={this.handleClose}
         setContentRef={this.setContentRef}
       >
-
         {/* Header */}
         <Portal
           name={commonPortals.USER_MENU_CONTAINER_BEFORE}
