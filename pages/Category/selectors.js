@@ -19,6 +19,13 @@ export const isFilterBarShown = createSelector(
     const hasProducts = (totalProductCount === null && categoryProductCount > 0) ||
        totalProductCount > 0;
 
-    return !subCategories && (hasProducts || activeFilters);
+    /*
+     * It's impossible for a user to have active filters and categories by
+     * using the UI.
+     * But, it's possible to have this state when user comes from a link.
+     * So, when there are active filters, it means this state was forced
+     * and filter bar should always be visible in this case.
+     */
+    return activeFilters || (!subCategories && hasProducts);
   }
 );
