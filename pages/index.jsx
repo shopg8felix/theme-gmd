@@ -25,6 +25,7 @@ import reducers from './reducers';
 import subscribers from './subscribers';
 import Worker from './worker';
 import * as routes from './routes';
+import UIProvider from '@shopgate/pwa-common/providers/ui';
 
 const devFontsUrl = 'https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900';
 
@@ -38,33 +39,35 @@ const Pages = () => (
   <App locale={locale} reducers={reducers} subscribers={subscribers} Worker={Worker}>
     <AppContext.Provider value={{ ...appConfig }}>
       <ThemeContext.Provider value={{}}>
-        <Portal name={APP_GLOBALS} />
-        <Viewport>
-          <ModalContainer component={Dialog} />
-          <SnackBar />
-          <Router>
-            <Route pattern={INDEX_PATH} component={routes.StartPage} />
-            <Route pattern={`${PAGE_PATH}/:pageId`} component={routes.Page} preload />
-            <Route pattern={`${CATEGORY_PATH}`} component={routes.RootCategory} />
-            <Route pattern={`${CATEGORY_PATH}/:categoryId`} component={routes.Category} preload />
-            <Route pattern={`${ITEM_PATH}/:productId`} component={routes.Product} preload />
-            <Route pattern={`${ITEM_PATH}/:productId/gallery/:slide`} component={routes.ProductGallery} />
-            <Route pattern={`${ITEM_PATH}/:productId/reviews`} component={routes.Reviews} />
-            {
-              appConfig.hasFavorites
-              && <Route pattern={`${FAVORITES_PATH}`} component={routes.Favorites} />
-            }
-            <Route pattern={`${CART_PATH}`} component={routes.Cart} />
-            <Route pattern={`${LOGIN_PATH}`} component={routes.Login} />
-            <Route pattern={SEARCH_PATH} component={routes.Search} preload />
-          </Router>
-          <Portal name={APP_ROUTES} props={appRoutesProps} />
-          {isDev && (
-            <Helmet>
-              <link href={devFontsUrl} rel="stylesheet" />
-            </Helmet>
-          )}
-        </Viewport>
+        <UIProvider>
+          <Portal name={APP_GLOBALS} />
+          <Viewport>
+            <ModalContainer component={Dialog} />
+            <SnackBar />
+            <Router>
+              <Route pattern={INDEX_PATH} component={routes.StartPage} />
+              <Route pattern={`${PAGE_PATH}/:pageId`} component={routes.Page} preload />
+              <Route pattern={`${CATEGORY_PATH}`} component={routes.RootCategory} />
+              <Route pattern={`${CATEGORY_PATH}/:categoryId`} component={routes.Category} preload />
+              <Route pattern={`${ITEM_PATH}/:productId`} component={routes.Product} preload />
+              <Route pattern={`${ITEM_PATH}/:productId/gallery/:slide`} component={routes.ProductGallery} />
+              <Route pattern={`${ITEM_PATH}/:productId/reviews`} component={routes.Reviews} />
+              {
+                appConfig.hasFavorites
+                && <Route pattern={`${FAVORITES_PATH}`} component={routes.Favorites} />
+              }
+              <Route pattern={`${CART_PATH}`} component={routes.Cart} />
+              <Route pattern={`${LOGIN_PATH}`} component={routes.Login} />
+              <Route pattern={SEARCH_PATH} component={routes.Search} preload />
+            </Router>
+            <Portal name={APP_ROUTES} props={appRoutesProps} />
+            {isDev && (
+              <Helmet>
+                <link href={devFontsUrl} rel="stylesheet" />
+              </Helmet>
+            )}
+          </Viewport>
+        </UIProvider>
       </ThemeContext.Provider>
     </AppContext.Provider>
   </App>

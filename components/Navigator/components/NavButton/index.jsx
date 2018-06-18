@@ -4,35 +4,20 @@ import { UIEvents } from '@shopgate/pwa-core';
 import { UI_NAVDRAWER_TOGGLE } from '@shopgate/pwa-common/constants/ui';
 import Button from '@shopgate/pwa-common/components/Button';
 import BurgerIcon from '@shopgate/pwa-ui-shared/icons/BurgerIcon';
-import connect from './connector';
+import { UI } from '@shopgate/pwa-common/context';
 import styles from './style';
 
 /**
  * The NavButton component.
  */
 class NavButton extends Component {
-  static propTypes = {
-    showIconShadow: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    showIconShadow: false,
-  };
-
-  /**
-   * The component only should update if the type changed.
-   * @param {Object} nextProps The next props.
-   * @returns {boolean}
-   */
-  shouldComponentUpdate(nextProps) {
-    return nextProps.showIconShadow !== this.props.showIconShadow;
-  }
 
   /**
    * Handles a click on the icon.
    */
   handleClick = () => {
     UIEvents.emit(UI_NAVDRAWER_TOGGLE, true);
+    this.props.toggleDrawer(true);
   }
 
   /**
@@ -48,4 +33,8 @@ class NavButton extends Component {
   }
 }
 
-export default connect(NavButton);
+export default () => (
+  <UI>
+    {({ toggleNavDrawer }) => <NavButton toggleDrawer={toggleNavDrawer} />}
+  </UI>
+);

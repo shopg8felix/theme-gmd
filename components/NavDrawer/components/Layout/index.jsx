@@ -1,49 +1,69 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Portal from 'react-portal';
+import Transition from 'react-transition-group/Transition';
 import Backdrop from '@shopgate/pwa-common/components/Backdrop';
-import Drawer from '@shopgate/pwa-common/components/Drawer';
+import { UI } from '@shopgate/pwa-common/context/';
 import styles from './style';
+import transition from './transition';
 
 /**
- * The Layout component.
- * @param {Object} props The component props.
- * @returns {JSX}
+ * The NavDrawer layout component.
  */
-const Layout = props => (
-  <Portal isOpened>
-    <section data-test-id="NavDrawer">
-      <Backdrop
-        isVisible={props.active}
-        level={3}
-        onClick={props.close}
-        opacity={20}
-      />
-      <Drawer
-        alwaysActive
-        className={styles.container}
-        isOpen={props.active}
-        animation={styles.drawerAnimation}
-      >
-        <div className={styles.content} ref={props.setContentRef}>
-          {props.children}
-        </div>
-      </Drawer>
-    </section>
-  </Portal>
-);
+class Layout extends Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  };
 
-Layout.propTypes = {
-  close: PropTypes.func.isRequired,
-  active: PropTypes.bool,
-  children: PropTypes.node,
-  setContentRef: PropTypes.func,
-};
+  /**
+   * @param {Object} props the component props.
+   */
+  constructor(props) {
+    super(props);
+    this.node = React.createRef();
+  }
 
-Layout.defaultProps = {
-  children: null,
-  active: false,
-  setContentRef: () => {},
-};
+  handleExit = () => {
+    this.node.current.scrollTop = 0;
+  }
+
+  /**
+   * @return {JSX}
+   */
+  render() {
+    return (
+      <UI>
+        {({ navDrawer, toggleNavDrawer }) => (
+          <section data-test-id="NavDrawer">
+            <Backdrop
+              isVisible={navDrawer}
+              level={3}
+              onClick={toggleNavDrawer}
+              opacity={20}
+            />
+            <Transition
+              in={navDrawer}
+              onExited={this.handleExit}
+              timeout={300}
+            >
+              {state => (
+                <div
+                  className={styles.container}
+                  style={transition[state]}
+                >
+                  <div
+                    className={styles.content}
+                    ref={this.node}
+                  >
+                    {this.props.children}
+                  </div>
+                </div>
+              )}
+            </Transition>
+          </section>
+        )}
+      </UI>
+    );
+  }
+}
 
 export default Layout;

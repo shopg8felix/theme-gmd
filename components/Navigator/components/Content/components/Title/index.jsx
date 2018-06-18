@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { UIEvents } from '@shopgate/pwa-core';
+import { UI_NAVIGATOR_TOGGLE_TITLE } from '@shopgate/pwa-common/constants/ui';
 import I18n from '@shopgate/pwa-common/components/I18n';
+import { UI } from '@shopgate/pwa-common/context';
 import styles from './style';
 
 /**
  * The Navigator Title component.
  */
 class Title extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+  }
+
+  static defaultProps = {
+    title: '',
+  }
+
   /**
    * @param {Object} props The component props.
    */
@@ -15,11 +26,23 @@ class Title extends Component {
 
     this.state = {
       visible: true,
-      title: '',
+      title: props.title,
     };
 
-    UIEvents.addListener('UI_NAVIGATOR_SET_TITLE', this.setTitle);
-    UIEvents.addListener('UI_NAVIGATOR_TOGGLE_TITLE', this.setVisibility);
+    UIEvents.addListener(UI_NAVIGATOR_TOGGLE_TITLE, this.setVisibility);
+  }
+
+  /**
+   * @param {Object} nextProps The next component props.
+   */
+  componentWillReceiveProps(nextProps) {
+    if (this.state.title === nextProps.title) {
+      return;
+    }
+
+    this.setState({
+      title: nextProps.title,
+    });
   }
 
   /**
@@ -29,20 +52,9 @@ class Title extends Component {
    */
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      this.state.visible !== nextState.visible
-      || this.state.title !== nextState.title
+      this.state.visible !== nextState.visible ||
+      this.state.title !== nextState.title
     );
-  }
-
-  /**
-   * @param {string} title The next title.
-   */
-  setTitle = (title) => {
-    if (this.state.title === title) {
-      return;
-    }
-
-    this.setState({ title });
   }
 
   /**
@@ -72,4 +84,10 @@ class Title extends Component {
   }
 }
 
-export default Title;
+export default () => (
+  <UI>
+    {({ title }) => (
+      <Title title={title} />
+    )}
+  </UI>
+);

@@ -5,33 +5,27 @@ const duration = 300;
 const easing = 'cubic-bezier(0.25, 0.1, 0.25, 1)';
 
 const container = css({
-  width: '100%',
+  bottom: 0,
   height: '100vh',
   maxWidth: '67vw',
+  position: 'fixed',
+  top: 0,
   transition: `transform ${duration}ms ${easing}`,
+  width: '100%',
   willChange: 'transform',
-}).toString();
+  zIndex: 3,
+});
 
 const content = css({
+  background: colors.light,
+  color: colors.dark,
   height: '100%',
   overflowY: 'scroll',
-  color: colors.dark,
-  background: colors.light,
-  WebkitOverflowScrolling: 'touch',
   paddingBottom: 'var(--safe-area-inset-bottom)',
-}).toString();
-
-const drawerAnimation = {
-  in: css({
-    transform: 'translate3d(0, 0, 0)',
-  }).toString(),
-  out: css({
-    transform: 'translate3d(-100%, 0, 0)',
-  }).toString(),
-};
+  WebkitOverflowScrolling: 'touch',
+});
 
 export default {
   container,
   content,
-  drawerAnimation,
 };

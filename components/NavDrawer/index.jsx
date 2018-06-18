@@ -53,45 +53,6 @@ class NavDrawer extends Component {
   };
 
   /**
-   * The constructor.
-   * @param {Object} props The component props.
-   */
-  constructor(props) {
-    super(props);
-
-    this.contentRef = null;
-
-    this.state = {
-      open: false,
-    };
-
-    UIEvents.addListener(UI_NAVDRAWER_TOGGLE, this.toggleDrawer);
-  }
-
-  /**
-   * Sets a ref to the content element in order to reset scroll position.
-   * @param {HTMLElement} ref The element ref.
-   */
-  setContentRef = (ref) => {
-    this.contentRef = ref;
-  };
-
-  /**
-   * @param {boolean} open The new state of the drawer.
-   */
-  toggleDrawer = (open) => {
-    if (this.state.open === open) {
-      return;
-    }
-
-    this.setState({ open });
-
-    if (!open) {
-      this.contentRef.scrollTop = 0;
-    }
-  }
-
-  /**
    * Handles the close event for the drawer and propagates the changes to the store.
    */
   handleClose = () => {
@@ -135,11 +96,7 @@ class NavDrawer extends Component {
     };
 
     return (
-      <Layout
-        active={this.state.open}
-        close={this.handleClose}
-        setContentRef={this.setContentRef}
-      >
+      <Layout>
         {/* Header */}
         <Portal
           name={commonPortals.USER_MENU_CONTAINER_BEFORE}
